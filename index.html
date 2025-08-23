@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For My LOVE</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      color: #333;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    header {
+      padding: 60px 20px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #fff;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      color: #fff;
+      margin-top: 10px;
+    }
+
+    /* 📸 Gallery Styles */
+    .gallery {
+      max-width: 700px;
+      margin: 50px auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 20px;
+      box-shadow: 0px 8px 20px rgba(0,0,0,0.2);
+    }
+
+    .gallery h2 {
+      color: #ff6f91;
+      margin-bottom: 20px;
+    }
+
+    .photos-list {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .photo-item {
+      text-align: center;
+    }
+
+    .photo-item img {
+      width: 100%;
+      max-width: 600px;
+      border-radius: 15px;
+      box-shadow: 0px 6px 15px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .photo-item img:hover {
+      transform: scale(1.05);
+    }
+
+    .caption {
+      margin-top: 10px;
+      font-size: 1.1rem;
+      color: #444;
+      font-style: italic;
+    }
+
+    /* Floating hearts animation */
+    .heart {
+      position: fixed;
+      top: -10px;
+      color: #ff6f91;
+      font-size: 24px;
+      animation: float 6s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+
+    footer {
+  margin: 50px 0 20px;
+  font-size: 1rem;
+  color: #fff;
+}
+
+/* Secret message styles */
+#secretMessage {
+  margin-top: 15px;
+  font-size: 1.2rem;
+  color: #e91e63;
+  font-weight: bold;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+#secretMessage.show {
+  opacity: 1;
+  text-shadow: 0px 0px 8px rgba(255,111,145,0.7);
+}
+
+/* Secret container */
+.secret-container {
+  margin-top: 20px;
+  position: relative;   /* needed for floating hearts */
+  display: inline-block;
+}
+
+/* Label Styling */
+.secret-container label {
+  display: block;
+  font-size: 1.4rem;
+  font-family: 'Brush Script MT', cursive;
+  color: #b22222;
+  margin-bottom: 10px;
+  text-shadow: 1px 1px 4px rgba(178, 34, 34, 0.3);
+}
+
+/* Input Styling */
+.secret-container input {
+  padding: 10px 15px;
+  font-size: 1rem;
+  border: 2px solid #b22222; /* dark red border */
+  border-radius: 8px;
+  width: 250px;
+  text-align: center;
+  outline: none;
+  transition: 0.3s;
+}
+
+.secret-container input:focus {
+  border-color: #ff6f91;
+  box-shadow: 0px 0px 8px rgba(255,111,145,0.5);
+}
+
+/* Button Styling */
+.secret-container button {
+  margin-top: 10px;
+  padding: 12px 25px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #fff;
+  background: #b22222; /* Dark Red */
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.secret-container button:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 6px 15px rgba(178, 34, 34, 0.6);
+}
+
+/* Floating hearts around secret message */
+.secret-container .heart-float {
+  position: absolute;
+  font-size: 20px;
+  color: #ff6f91;
+  animation: floatUp 3s linear forwards;
+  opacity: 0;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-80px); opacity: 0; }
+}
+
+/* Button for love rain */
+#loveRainBtn {
+  margin-bottom: 20px;
+  padding: 14px 30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(135deg, #8e0e00, #ff6f91);
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#loveRainBtn:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 6px 15px rgba(0,0,0,0.2);
+}
+
+/* Falling hearts */
+.falling-heart {
+  position: fixed;
+  top: -20px;
+  font-size: 24px;
+  color: #ff6f91;
+  animation: fall 4s linear forwards;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+@keyframes fall {
+  0% { transform: translateY(0) rotate(0); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}
+
+
+
+</style>
+
+  </style>
+</head>
+<body>
+<header>
+  <h1> Happy Anniversary Betu 😘</h1>
+  <h2>Celebrating 1 Year of Love – Since 30th August 2024</h2>
+
+  <!-- 🔒 Secret Message Unlock -->
+  <div class="secret-container">
+    <label for="loveInput">How much you love me? 💕</label><br>
+    <input type="text" id="loveInput" placeholder="Type your answer...">
+    <button onclick="checkLove()">Submit</button>
+    <p id="secretMessage" class="hidden">
+  Vaishnavi, my love for you is infinite – beyond words, beyond time, beyond everything. ❤️
+</p>
+
+  </div>
+</header>
+
+
+  <!-- 📸 Gallery Section -->
+  <section class="gallery">
+    <h2>Our Beautiful Journey</h2>
+    <div class="photos-list">
+
+      <!-- Already existing 16 -->
+      <div class="photo-item"><img src="images/photo1.jpg"><p class="caption">🌸 "The day it all began!"</p></div>
+      <div class="photo-item"><img src="images/photo2.jpg"><p class="caption">"Aankhein meri har jagah,dhunde tujhe bewajah"💕</p></div>
+      <div class="photo-item"><img src="images/photo3.jpg"><p class="caption">❤️ "A moment I’ll cherish forever with you"</p></div>
+      <div class="photo-item"><img src="images/photo4.jpg"><p class="caption">"I am convinced (bina chaand ke Eid nhi hoti)" ✨</p></div>
+      <div class="photo-item"><img src="images/photo5.jpg"><p class="caption"> "Your eyes still make my heart skip a beat" 😩</p></div>
+      <div class="photo-item"><img src="images/photo6.jpg"><p class="caption">💕 "Our laughter is my favorite sound"</p></div>
+      <div class="photo-item"><img src="images/photo7.jpg"><p class="caption">🌙 "Your presence is the best gift i could ever receive"</p></div>
+      <div class="photo-item"><img src="images/photo8.jpg"><p class="caption">🍂 "Teri soorat se hai aalam mein baharon ko sabaat.."</p></div>
+      <div class="photo-item"><img src="images/photo9.jpg"><p class="caption"> "Teri aankhon ke siva duniya me rakha kya hai?" 💕</p></div>                              
+      <div class="photo-item"><img src="images/photo10.jpg"><p class="caption">🌸 "I would never fall in love again until i found you"</p></div>
+      <div class="photo-item"><img src="images/photo11.jpg"><p class="caption">✨ "Every little thing becomes special with you"</p></div>
+      <div class="photo-item"><img src="images/photo12.jpg"><p class="caption">😭 "Don't stop looking at me with those eyes full of love"</p></div>
+      <div class="photo-item"><img src="images/photo13.jpg"><p class="caption">"You make the outfit look more beautifull" 😍</p></div>
+      <div class="photo-item"><img src="images/photo14.jpg"><p class="caption">🥹 "My humour pays off when i make you laugh"</p></div>
+      <div class="photo-item"><img src="images/photo15.jpg"><p class="caption">"Our love shines brighter through these specs, forever in focus!" 🤭</p></div>
+      <div class="photo-item"><img src="images/photo16.jpg"><p class="caption">❤️ "Don't let that smile fade, its one of my reason to live"</p></div>
+      <div class="photo-item"><img src="images/photo17.jpg"><p class="caption">"A cinephile ignores the movie when he is with you" 🫶🏻</p></div>
+      <div class="photo-item"><img src="images/photo18.jpg"><p class="caption">"Zulfein tum sawarti ho bikhar mai jaata hu" 🫠</p></div>
+      <div class="photo-item"><img src="images/photo19.jpg"><p class="caption">💗 "Mere shaaney pe sar rakhe tu mai neend kahu tu sojaye"</p></div>
+      <div class="photo-item"><img src="images/photo20.jpg"><p class="caption">💕 "Mujhe tumhare saath sirf waqt nhi, Zindagi bitani hai"</p></div>
+      <div class="photo-item"><img src="images/photo21.jpg"><p class="caption">🎶 "Ab mujhko jaana hai kahaan? Tu hi safar hai aakhri"</p></div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <button id="loveRainBtn">See how much I loves you 💕</button>
+    <h2>Happy 1st Anniversary My Love 🌹</h2>
+  </footer>
+
+ <!-- Floating Hearts Script -->
+<script>
+  function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+    heart.innerHTML = "❤️";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+  }
+  setInterval(createHeart, 500);
+</script>
+
+<!-- Secret Message Script -->
+<script>
+  function checkLove() {
+    const input = document.getElementById("loveInput").value.trim().toLowerCase();
+    const answers = ["infinite", "universe", "always", "more than everything"]; // 💡 add more answers here
+    if (answers.includes(input)) {
+      document.getElementById("secretMessage").classList.add("show");
+      document.getElementById("loveInput").style.display = "none";
+      document.querySelector(".secret-container button").style.display = "none";
+      spawnHearts(); // start heart animation
+    } else {
+      alert("Try again, my love 😘");
+    }
+  }
+
+  function spawnHearts() {
+    const container = document.querySelector(".secret-container");
+    let count = 0;
+    const heartInterval = setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart-float";
+      heart.innerHTML = "❤️";
+      heart.style.left = Math.random() * 200 + "px"; // random X position
+      container.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 3000);
+
+      count++;
+      if (count > 15) clearInterval(heartInterval); // stop after 15 hearts
+    }, 300);
+  }
+</script>
+
+<script>
+  // Replace your existing loveRainBtn script with this:
+  document.getElementById("loveRainBtn").addEventListener("click", function () {
+    const btn = document.getElementById("loveRainBtn");
+
+    // change the button text (keeps your earlier behavior)
+    btn.innerText = "More than this Heart-Rain 💖";
+    btn.disabled = true; // avoid spamming while raining
+
+    const emojis = ["❤️","🧡","💛","💚","💙","💜","🤍","🤎","🩷","🩵","💖","💕","💞","💘","💝"];
+    const startTime = Date.now();
+
+    // create hearts for 5 seconds
+    const heartInterval = setInterval(() => {
+      // stop maker after 5s
+      if (Date.now() - startTime > 10000) {
+        clearInterval(heartInterval);
+        setTimeout(() => (btn.disabled = false), 800); // re-enable after last hearts fade
+        return;
+      }
+
+      const heart = document.createElement("div");
+      heart.className = "falling-heart";
+      heart.innerHTML = emojis[Math.floor(Math.random() * emojis.length)]; // random heart style
+
+      // randomize position, size, speed, and spin
+      heart.style.left = Math.random() * 100 + "vw";                // 0–100% width
+      heart.style.fontSize = (18 + Math.random() * 28) + "px";      // 18–46px
+      heart.style.animationDuration = (3 + Math.random() * 3) + "s"; // 3–6s fall
+      heart.style.transform = `rotate(${Math.random()*360}deg)`;    // random start angle
+
+      document.body.appendChild(heart);
+
+      // clean up after animation
+      setTimeout(() => heart.remove(), 6500);
+    }, 120); // smaller = denser rain (try 80 for more)
+  });
+</script>
+
+</body>
+</html>
