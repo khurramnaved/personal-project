@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>For My LOVE</title>
+  <title>for my cutie pie</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
@@ -211,7 +211,24 @@
   100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
 }
 
+.dark-red-heading {
+  font-size: 3rem;
+  color: #8B0000; /* Dark Red */
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+}
 
+.dark-red-special {
+  font-size: 2rem;
+  color: #8B0000; /* Same dark red as main heading */
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+  font-weight: bold;
+}
+
+.light-red-subheading {
+  color: #FF6666; /* Light Red */
+  font-size: 1.6rem;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+}
 
 </style>
 
@@ -219,8 +236,8 @@
 </head>
 <body>
 <header>
-  <h1> Happy Anniversary Betu 😘</h1>
-  <h2>Celebrating 1 Year of Love – Since 30th August 2024</h2>
+  <h1 class="dark-red-heading">Happy Anniversary Betu 😘</h1>
+  <h2 class="light-red-subheading">Celebrating 1 Year of Love – Since 30th August 2024</h2>
 
   <!-- 🔒 Secret Message Unlock -->
   <div class="secret-container">
@@ -269,7 +286,7 @@ I know you love me so much Vaishu, you don't need to prove it. That question was
   <!-- Footer -->
   <footer>
     <button id="loveRainBtn">See how much I loves you 💕</button>
-    <h2>Happy 1st Anniversary My Love 🌹</h2>
+    <h2 class="dark-red-special">Happy 1st Anniversary My Love 🌹</h2>
   </footer>
 
  <!-- Floating Hearts Script -->
@@ -290,7 +307,7 @@ I know you love me so much Vaishu, you don't need to prove it. That question was
 <script>
   function checkLove() {
     const input = document.getElementById("loveInput").value.trim().toLowerCase();
-    const answers = ["infinite", "universe", "always", "more than everything"]; // 💡 add more answers here
+    const answers = ["infinite", "i love you so much", "more than anything", "more than myself","infinity to the power infinity"]; // 💡 add more answers here
     if (answers.includes(input)) {
       document.getElementById("secretMessage").classList.add("show");
       document.getElementById("loveInput").style.display = "none";
