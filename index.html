@@ -88,6 +88,23 @@
       100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
     }
 
+    #playSongBtn {
+  padding: 14px 30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(135deg, #b22222, #ff6f91);
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#playSongBtn:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 6px 15px rgba(0,0,0,0.2);
+}
+
     footer {
   margin: 50px 0 20px;
   font-size: 1rem;
@@ -249,6 +266,12 @@ I know you love me so much Vaishu, you don't need to prove it. That question was
 </p>
 
   </div>
+
+  <!-- 🎵 Song Player -->
+  <div style="margin: 30px 0;">
+    <button id="playSongBtn">Play Our Song 🎶</button>
+    <audio id="loveSong" src="song.mp3"></audio>
+  </div>
 </header>
 
 
@@ -372,6 +395,21 @@ I know you love me so much Vaishu, you don't need to prove it. That question was
       // clean up after animation
       setTimeout(() => heart.remove(), 6500);
     }, 120); // smaller = denser rain (try 80 for more)
+  });
+</script>
+
+<script>
+  const playBtn = document.getElementById("playSongBtn");
+  const loveSong = document.getElementById("loveSong");
+
+  playBtn.addEventListener("click", () => {
+    if (loveSong.paused) {
+      loveSong.play();
+      playBtn.innerText = "Pause Song ⏸️";
+    } else {
+      loveSong.pause();
+      playBtn.innerText = "Play Our Song 🎶";
+    }
   });
 </script>
 
